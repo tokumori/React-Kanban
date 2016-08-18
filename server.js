@@ -16,7 +16,21 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-var server = app.listen(8080, function () {
-  console.log('Connected on port ' + 8080);
-  db.sequelize.sync();
+task.findAll({
+  include: [
+    {
+      model: user,
+      where: {}
+    }
+  ]
+})
+.then((tasks)=> {
+  console.log(tasks);
+});
+
+db.sequelize.sync()
+.then(function () {
+  var server = app.listen(8080, function () {
+    console.log(`Connected on port ${server.address().port}`);
+  });
 });
