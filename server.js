@@ -27,8 +27,7 @@ app.get('/api/tasks', function (req, res, next) {
       ]
     })
     .then(function (tasks) {
-      console.log(tasks);
-      return res.send(tasks);
+      return res.json(tasks);
     });
 });
 
@@ -39,3 +38,4 @@ db.sequelize.sync()
 
   });
 });
+
