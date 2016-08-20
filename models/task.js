@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         models.task.belongsToMany(models.user, {
           through: models.user_task,
-          foreignKey: 'user_id'
+          foreignKey: 'user_id',
+          targetKey: 'id'
         });
         models.task.belongsTo(models.status, {
           foreignKey: 'status_id',
@@ -19,6 +20,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  console.log(task);
   return task;
 };

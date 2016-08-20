@@ -16,21 +16,26 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-task.findAll({
-  include: [
-    {
-      model: user,
-      where: {}
-    }
-  ]
-})
-.then((tasks)=> {
-  console.log(tasks);
+app.get('/api/tasks', function (req, res, next) {
+  task
+    .findAll({
+      include: [
+        {
+          model: user,
+          where: {}
+        }
+      ]
+    })
+    .then(function (tasks) {
+      console.log(tasks);
+      return res.send(tasks);
+    });
 });
 
 db.sequelize.sync()
 .then(function () {
   var server = app.listen(8080, function () {
     console.log(`Connected on port ${server.address().port}`);
+
   });
 });
