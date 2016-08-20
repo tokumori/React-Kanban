@@ -1,12 +1,12 @@
 'use strict';
 
-var faker = require('faker');
+const faker = require('faker');
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    var tasks = [];
-    for (var i = 0; i < 5; i++) {
-      var taskData = {
+    let tasks = [];
+    for (let i = 0; i < 5; i++) {
+      const taskData = {
         title: faker.lorem.words(),
         priority: faker.random.number(5),
         status_id: faker.random.number(3),
