@@ -18,15 +18,7 @@ module.exports = {
       users.push(userData);
     }
     return queryInterface
-      .bulkInsert('users', users, {})
-      .then(function () {
-        return queryInterface.sequelize.query('SELECT * FROM users');
-      })
-      .then(function (res) {
-        return res[0].map(function (user) {
-          user.id
-        });
-      });
+      .bulkInsert('users', users, {});
   },
 
   down: function (queryInterface, Sequelize) {
