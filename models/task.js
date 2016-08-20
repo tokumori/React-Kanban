@@ -12,8 +12,13 @@ module.exports = function(sequelize, DataTypes) {
           through: models.user_task,
           foreignKey: 'user_id'
         });
+        models.task.belongsTo(models.status, {
+          foreignKey: 'status_id',
+          targetKey: 'id'
+        });
       }
     }
   });
+  console.log(task);
   return task;
 };

@@ -15,7 +15,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       status_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        foreignKey: true,
+        references: {
+          model: 'statuses',
+          key: 'id'
+        }
       },
       created_by: {
         type: Sequelize.INTEGER

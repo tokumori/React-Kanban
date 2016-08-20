@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-
+        models.status.hasMany(models.task, {
+          foreignKey: 'status_id'
+        });
       }
     }
   });
