@@ -1,7 +1,13 @@
 
-{/*const Queue = React.createClass({
+const QueueColumn = React.createClass({
+  render: function () {
+    return (
+      <div className="QueueColumn">
 
-})*/}
+      </div>
+    )
+  }
+});
 
 
 const Kanban = React.createClass({
@@ -25,21 +31,53 @@ const Kanban = React.createClass({
 
   componentDidMount: function () {
     this.loadTasks();
-    console.log('success');
   },
 
   render: function () {
+    const tasksArray = this.state.data
+      .sort(function (taskA, taskB) {
+        if (taskA.priority < taskB.priority) {
+          return 1;
+        }
+        if (taskA.priority > taskB.priority) {
+          return -1;
+        }
+        return 0;
+      });
+    console.log(tasksArray);
+    const queue = tasksArray
+      .filter(function (tasks) {
+        if (tasks.status_id === 1) {
+          return true;
+        }
+        return false;
+      })
+    console.log(queue);
+    const inProgress = tasksArray
+      .filter(function (tasks) {
+        if (tasks.status_id === 2) {
+          return true;
+        }
+        return false;
+    });
+    const done = tasksArray
+      .filter(function (tasks) {
+        if (tasks.status_id === 3) {
+          return true;
+        }
+        return false;
+    });
     return (
       <div className="Kanban">
+        <QueueColumn
+          data={queue}
+        />
         {/*
-        <Queue
-          data={this.state.data}
+        <InProgressColumn
+          data={inProgress}
         />
-        <InProgress
-          data={this.state.data}
-        />
-        <Completed
-          data={this.state.data}
+        <DoneColumn
+          data={done}
         />
         */}
       </div>
