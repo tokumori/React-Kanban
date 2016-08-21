@@ -1,20 +1,8 @@
-// var Hello = React.createClass({
-//   getInitialState: function () {
-//     return {value: ''};
-//   }
-// })
-// <input
-//   value={this.state.value}
-//   onChange={(e) => {
-//     this.setState({
-//       value: e.target.value
-//     });
-//   }}
-// var Child = React.createClass({
-//   render: function() {
-//     return <div>{this.props.greeting}</div>
-//   }
-// })
+
+{/*const Queue = React.createClass({
+
+})*/}
+
 
 const Kanban = React.createClass({
   loadTasks: function () {
@@ -43,7 +31,8 @@ const Kanban = React.createClass({
   render: function () {
     return (
       <div className="Kanban">
-        {/* <Queue
+        {/*
+        <Queue
           data={this.state.data}
         />
         <InProgress
@@ -51,7 +40,8 @@ const Kanban = React.createClass({
         />
         <Completed
           data={this.state.data}
-        /> */}
+        />
+        */}
       </div>
     );
   }
