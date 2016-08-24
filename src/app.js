@@ -1,14 +1,73 @@
-
-const QueueColumn = React.createClass({
+const Card = React.createClass({
   render: function () {
     return (
-      <div className="QueueColumn">
-
-      </div>
-    )
+      <div>Hello</div>
+    );
   }
 });
 
+const QueueColumn = React.createClass({
+  render: function () {
+    const queryNodes = this.props.data.map((card, index) => {
+      return (
+        <Card
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          createdBy={card.created_by}
+          users={card.users}
+        />
+      );
+    });
+    return (
+      <div className="QueueColumn">
+        {queryNodes}
+      </div>
+    );
+  }
+});
+
+const InProgressColumn = React.createClass({
+  render: function () {
+    const queryNodes = this.props.data.map((card, index) => {
+      return (
+        <Card
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          createdBy={card.created_by}
+          users={card.users}
+        />
+      );
+    });
+    return (
+      <div className="InProgressColumn">
+        {queryNodes}
+      </div>
+    );
+  }
+});
+
+const DoneColumn = React.createClass({
+  render: function () {
+    var queryNodes = this.props.data.map((card, index) => {
+      return (
+        <Card
+          key={card.id}
+          title={card.title}
+          priority={card.priority}
+          createdBy={card.created_by}
+          users={card.users}
+        />
+      );
+    });
+    return (
+      <div className="DoneColumn">
+        {queryNodes}
+      </div>
+    );
+  }
+});
 
 const Kanban = React.createClass({
   loadTasks: function () {
@@ -43,43 +102,34 @@ const Kanban = React.createClass({
           return -1;
         }
         return 0;
-      });
-    console.log(tasksArray);
-    const queue = tasksArray
-      .filter(function (tasks) {
-        if (tasks.status_id === 1) {
-          return true;
-        }
-        return false;
       })
-    console.log(queue);
+    const queue = tasksArray
+      .filter(function (task) {
+        return task.status_id === 1;
+      });
+
     const inProgress = tasksArray
-      .filter(function (tasks) {
-        if (tasks.status_id === 2) {
-          return true;
-        }
-        return false;
-    });
+      .filter(function (task) {
+        return task.status_id === 2;
+      });
     const done = tasksArray
-      .filter(function (tasks) {
-        if (tasks.status_id === 3) {
-          return true;
-        }
-        return false;
-    });
+      .filter(function (task) {
+        return task.status_id === 3;
+      });
     return (
       <div className="Kanban">
-        <QueueColumn
-          data={queue}
-        />
-        {/*
-        <InProgressColumn
-          data={inProgress}
-        />
-        <DoneColumn
-          data={done}
-        />
-        */}
+        <h2>Kanban</h2>
+        <div>
+          <QueueColumn
+            data={queue}
+          />
+          <InProgressColumn
+            data={inProgress}
+          />
+          <DoneColumn
+            data={done}
+          />
+        </div>
       </div>
     );
   }
