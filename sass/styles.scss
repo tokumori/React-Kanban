@@ -1,0 +1,53 @@
+@import 'partials/reset';
+@import 'partials/general_styles';
+* {
+  box-sizing: border-box;
+}
+
+div {
+  border-style: dotted;
+  border-width: 2px;
+  border-color: red;
+}
+
+  .columnContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+  }
+    .column{
+      flex-flow: row wrap;
+      text-align: center;
+
+      .queueColumn {
+        flex: 1 1 calc(90%/3);
+        @include respond-to('large'){
+          display: flex;
+          flex-flow: row wrap;
+          .card {
+            flex: 1 1 calc(90%/3);
+          }
+        }
+      }
+      .inProgressColumn {
+        flex: 1 1 calc(90%/3);
+        @include respond-to('large'){
+          display: flex;
+          flex-flow: row wrap;
+          .card {
+            flex: 1 1 calc(90%/3);
+          }
+        }
+      }
+      .doneColumn {
+        flex: 1 1 calc(90%/3);
+        @include respond-to('large'){
+          display: flex;
+          flex-flow: row wrap;
+          .card {
+            flex: 1 1 calc(90%/3);
+          }
+        }
+      }
+    }

@@ -1,7 +1,18 @@
 const Card = React.createClass({
   render: function () {
+    const assignedTo = this.props.users.forEach((user) => {
+      console.log(user.id);
+      return (user.id);
+    });
     return (
-      <div>Hello</div>
+      <div className="card">
+        <div className="task">
+          <p className="taskTitle">{this.props.title}</p>
+          <p className="taskPriority">{this.props.priority}</p>
+          <p className="taskCreator">Created By: {this.props.createdBy}</p>
+          <p className="taskUsers">Assigned To: {assignedTo}</p>
+        </div>
+      </div>
     );
   }
 });
@@ -20,7 +31,7 @@ const QueueColumn = React.createClass({
       );
     });
     return (
-      <div className="QueueColumn">
+      <div className="queueColumn">
         {queryNodes}
       </div>
     );
@@ -41,7 +52,7 @@ const InProgressColumn = React.createClass({
       );
     });
     return (
-      <div className="InProgressColumn">
+      <div className="inProgressColumn">
         {queryNodes}
       </div>
     );
@@ -62,7 +73,7 @@ const DoneColumn = React.createClass({
       );
     });
     return (
-      <div className="DoneColumn">
+      <div className="doneColumn">
         {queryNodes}
       </div>
     );
@@ -117,19 +128,28 @@ const Kanban = React.createClass({
         return task.status_id === 3;
       });
     return (
-      <div className="Kanban">
-        <h2>Kanban</h2>
-        <div>
-          <QueueColumn
-            data={queue}
-          />
-          <InProgressColumn
-            data={inProgress}
-          />
-          <DoneColumn
-            data={done}
-          />
-        </div>
+      <div className="kanban">
+        <h1>Kanban</h1>
+          <div className="columnContainer">
+            <div className="column">
+              <h2>Queue</h2>
+              <QueueColumn
+                data={queue}
+              />
+            </div>
+            <div className="column">
+              <h2>In Progress</h2>
+              <InProgressColumn
+                data={inProgress}
+              />
+            </div>
+            <div className="column">
+              <h2>Done</h2>
+              <DoneColumn
+                data={done}
+              />
+            </div>
+          </div>
       </div>
     );
   }
