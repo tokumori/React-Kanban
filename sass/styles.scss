@@ -4,18 +4,20 @@
   box-sizing: border-box;
 }
 
-div {
-  border-style: dotted;
-  border-width: 2px;
-  border-color: red;
-}
+// div {
+//   border-style: dotted;
+//   border-width: 2px;
+//   border-color: red;
+// }
+
+.kanban{
+  width: 100%;
 
   .columnContainer {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
 
-  }
     .column{
       flex-flow: row wrap;
       text-align: center;
@@ -51,3 +53,5 @@ div {
         }
       }
     }
+  }
+}
