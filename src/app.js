@@ -1,3 +1,7 @@
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
+
 const Card = React.createClass({
   render: function () {
     const assignedTo = this.props.users.forEach((user) => {
@@ -7,6 +11,7 @@ const Card = React.createClass({
     return (
       <div className="card">
         <div className="task">
+          <p className="taskId">Task ID: {this.props.id}</p>
           <p className="taskTitle">{this.props.title}</p>
           <p className="taskPriority">{this.props.priority}</p>
           <p className="taskCreator">Created By: {this.props.createdBy}</p>
@@ -23,6 +28,7 @@ const QueueColumn = React.createClass({
       return (
         <Card
           key={card.id}
+          id={card.id}
           title={card.title}
           priority={card.priority}
           createdBy={card.created_by}
@@ -44,6 +50,7 @@ const InProgressColumn = React.createClass({
       return (
         <Card
           key={card.id}
+          id={card.id}
           title={card.title}
           priority={card.priority}
           createdBy={card.created_by}
@@ -65,6 +72,7 @@ const DoneColumn = React.createClass({
       return (
         <Card
           key={card.id}
+          id={card.id}
           title={card.title}
           priority={card.priority}
           createdBy={card.created_by}
