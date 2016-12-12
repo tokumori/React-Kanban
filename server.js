@@ -16,8 +16,8 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(function (req, res, next) {
-  res.set('Access-Control-Allow-Origin', '*');
-  res.set('Cache-Control', 'no-cache');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'no-cache');
   next();
 });
 
@@ -36,11 +36,14 @@ app.get('/api/tasks', function (req, res, next) {
     });
 });
 
-db.sequelize.sync()
-.then(function () {
-  var server = app.listen(8080, function () {
-    console.log(`Connected on port ${server.address().port}`);
-
-  });
+db.sequelize
+  .sync()
+  .then(function () {
+    var server = app.listen(8080, function () {
+      console.log(`Connected on port ${server.address().port}`);
+  })
+  .catch(function (err) {
+    return console.log(err);
+  })
 });
 

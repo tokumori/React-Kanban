@@ -6,7 +6,6 @@ import QueueColumn from './components/QueueColumn';
 import InProgressColumn from './components/InProgressColumn';
 import DoneColumn from './components/DoneColumn';
 
-
 const Kanban = React.createClass({
   loadTasks: function () {
     $.ajax({
